@@ -1,0 +1,31 @@
+{
+    "1": {
+        "nameOfPlace": "\u041c\u0420\u041a",
+        "description": "\u041b\u0443\u0447\u0448\u0438\u0439 \u043a\u043e\u043b\u043b\u0435\u0434\u0436 \u0441\u0442\u0440\u0430\u043d\u044b",
+        "photos": [
+            "https://res.cloudinary.com/dwd6viafv/image/upload/v1703241283/download_fwy8ng.jpg"
+        ],
+        "longitude": "27.592338",
+        "latitude": "53.918705",
+        "types": [
+            "7",
+            "10"
+        ]
+    },
+    "2": {
+        "nameOfPlace": "hata danika",
+        "description": "the best place for your new year celebrations",
+        "photos": [
+            "https://res.cloudinary.com/dodfq0tck/image/upload/v1704210458/qolygsizga6uaq6myg9h.jpg",
+            "https://res.cloudinary.com/dodfq0tck/image/upload/v1704210472/khziuupumsvdwebmvhh6.jpg"
+        ],
+        "longitude": "29.965912",
+        "latitude": "51.880902",
+        "types": [
+            "2",
+            "5",
+            "9",
+            "8"
+        ]
+    }
+}

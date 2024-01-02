@@ -1,0 +1,8 @@
+INSERT INTO place (name_of_place, description, longitude, latitude) VALUES ('МРК', 'Лучший колледж страны', 27.592338, 53.918705);
+INSERT INTO photos (place_id, photo_url) VALUES (1, 'https://res.cloudinary.com/dwd6viafv/image/upload/v1703241283/download_fwy8ng.jpg');
+INSERT INTO place_type (place_id, type_id) VALUES (1, 7),(1, 10);
+
+INSERT INTO place (name_of_place, description, longitude, latitude) VALUES ('hata danika', 'the best place for your new year celebrations', 29.965912, 51.880902);
+INSERT INTO photos (place_id, photo_url) VALUES (2, 'https://res.cloudinary.com/dodfq0tck/image/upload/v1704210458/qolygsizga6uaq6myg9h.jpg'),(2, 'https://res.cloudinary.com/dodfq0tck/image/upload/v1704210472/khziuupumsvdwebmvhh6.jpg');
+INSERT INTO place_type (place_id, type_id) VALUES (2, 2),(2, 5),(2, 9),(2, 8);
+
