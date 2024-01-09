@@ -27,6 +27,7 @@ class location(StatesGroup):
     Q4 = State()
     Q5 = State()
     Q6 = State()
+    Q7 = State()
 
 bot = Bot(TOKEN)						# Иницилизация aiogram
 dp = Dispatcher(bot, storage=MemoryStorage())
@@ -58,8 +59,15 @@ def createDocumentFromData():            # Создание из данных д
         for placeType in place["types"]:
             text += f"({id}, {placeType}),"
         text = text[:-1]
+        text += ";\n"
+        text += "INSERT INTO timetable (place_id, day_of_week, start_time, end_time) VALUES "
+        for day in place["schedule"]:
+            text += f"({id}, '{day['day_of_week']}', '{day['start_time']}', '{day['end_time']}'),"
+            print(day["day_of_week"])
+            print(day["start_time"])
+            print(day["end_time"])
+        text = text[:-1]
         text += ";\n\n"
-
     with open("locations.txt", 'w') as file:
         file.write(text)
 
@@ -109,7 +117,8 @@ def newLocation(user_id):
             "photos": [],
             "longitude": 0,
             "latitude": 0,
-            "types": []
+            "types": [],
+            "schedule": []
         }
         writeDB(data)
 
@@ -159,12 +168,23 @@ def addLatitude(user_id, text):
 def addType(user_id, text):
     dataU = readUsers()
     location_id = dataU["location"][dataU["auth"].index(user_id)]
-    dataU["location"][dataU["auth"].index(user_id)] = "none"
-    writeUsers(dataU)
     data = readDB()
     result = text.strip('[]').replace(' ', '').split(',')
     data[location_id]["types"] = result
     writeDB(data)
+
+def addSchedule(user_id, schedule_text):
+    days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+    dataU = readUsers()
+    location_id = dataU["location"][dataU["auth"].index(user_id)]
+    dataU["location"][dataU["auth"].index(user_id)] = "none"
+    writeUsers(dataU)
+    schedule = list(map(lambda x: list(map(lambda time: time + ":00", x.split(" - "))), schedule_text.split("\n")))
+    data = readDB()
+    for i, day in enumerate(schedule):
+        data[location_id]["schedule"].append({"day_of_week": days[i], "start_time": day[0], "end_time": day[1]})
+    writeDB(data)
+    print(schedule)
 
 @dp.message_handler(commands=['start']) 
 async def start(msg: types.Message):
@@ -233,14 +253,24 @@ async def new_name_set(msg: types.Message, state: FSMContext):
 async def new_name_set(msg: types.Message, state: FSMContext):
     addLongitude(str(msg.from_user.id), msg.text)
     await location.Q6.set()
-    await msg.answer('1) Все\n2) Развлечения\n3) Новые\n4) Рыбалка\n5) Семьей\n6) Парой\n7) Знаковые места\n8) Активный отдых\n9) Большой компанией\n10) Разные\n\nОтправьте через запятую, номера, которые характеры для локации:')
+    await msg.answer('1) Развлечения\n2) Новые\n3) Рыбалка\n4) Семьей\n5) Парой\n6) Знаковые места\n7) Активный отдых\n8) Большой компанией\n9) Разные\n\nОтправьте через запятую, номера, которые характеры для локации:')
 
 @dp.message_handler(state=location.Q6) # Принимаем состояние
 async def new_name_set(msg: types.Message, state: FSMContext):
     addType(str(msg.from_user.id), msg.text)
+    await location.Q7.set()
+    await msg.answer('Отправьте расписание места на неделю в формате (удобнее скопировать и изменить):')
+    await msg.answer('00:00 - 00:00\n00:00 - 00:00\n00:00 - 00:00\n00:00 - 00:00\n00:00 - 00:00\n00:00 - 00:00\n00:00 - 00:00')
+    await msg.answer('Важно! Если расписание в этот день круглосуточно, то укажите время 00:00 - 00:00, если круглосуточно то 00:00 - 24:00.')
+
+
+@dp.message_handler(state=location.Q7) # Принимаем состояние
+async def new_name_set(msg: types.Message, state: FSMContext):
+    addSchedule(str(msg.from_user.id), msg.text)
     await state.finish()
     await msg.answer('Локация добавлена!')
     await msg.answer('| Добавить новую локацию: /locationnew\n\n| Получить файл с локациями: /locationsql\n\n| Получить json со всеми локациями: /locationjson')
 
-if __name__ == '__main__':              # Бесконечный цикл
+if __name__ == '__main__':  # Бесконечный цикл
+    print("start.")
     executor.start_polling(dp)
