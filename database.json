@@ -19,37 +19,37 @@
             {
                 "day_of_week": "monday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "tuesday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "wednesday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "thursday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "friday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "saturday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "sunday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             }
         ]
     },
@@ -73,37 +73,37 @@
             {
                 "day_of_week": "monday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "tuesday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "wednesday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "thursday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "friday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "saturday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             },
             {
                 "day_of_week": "sunday",
                 "start_time": "00:00:00",
-                "end_time": "24:00:00"
+                "end_time": "23:59:00"
             }
         ]
     },

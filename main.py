@@ -63,9 +63,6 @@ def createDocumentFromData():            # Создание из данных д
         text += "INSERT INTO timetable (place_id, day_of_week, start_time, end_time) VALUES "
         for day in place["schedule"]:
             text += f"({id}, '{day['day_of_week']}', '{day['start_time']}', '{day['end_time']}'),"
-            print(day["day_of_week"])
-            print(day["start_time"])
-            print(day["end_time"])
         text = text[:-1]
         text += ";\n\n"
     with open("locations.txt", 'w') as file:
@@ -184,7 +181,6 @@ def addSchedule(user_id, schedule_text):
     for i, day in enumerate(schedule):
         data[location_id]["schedule"].append({"day_of_week": days[i], "start_time": day[0], "end_time": day[1]})
     writeDB(data)
-    print(schedule)
 
 @dp.message_handler(commands=['start']) 
 async def start(msg: types.Message):
