@@ -8,5 +8,8 @@
         "none",
         "none",
         "none"
-    ]
+    ],
+    "isDBisOn": false,
+    "isActualDBIsOn": false,
+    "isHerokuIsOn": false
 }
